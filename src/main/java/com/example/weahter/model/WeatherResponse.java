@@ -1,11 +1,9 @@
 package com.example.weather.model;
 
 public class WeatherResponse {
-    // JSON yanıtından beklenen alanlar burada tanımlanmalıdır
     private String main;
     private String description;
 
-    // Getter ve Setter metodları
     public String getMain() {
         return main;
     }
