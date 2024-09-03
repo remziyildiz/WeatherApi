@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Weather Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .weather-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .weather-info p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Weather Information</h1>
+    <form action="/weather" method="get">
+        <label for="city">Enter city:</label>
+        <input type="text" id="city" name="city" placeholder="Enter city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <!-- Hava durumu bilgilerini göster -->
+    <div th:if="${weather != null}" class="weather-info">
+        <h2>Weather in <span th:text="${weather.city}">City</span></h2>
+        <p>Main: <span th:text="${weather.main}">Main</span></p>
+        <p>Description: <span th:text="${weather.description}">Description</span></p>
+    </div>
+
+    <!-- Hava durumu verisi yoksa mesaj göster -->
+    <div th:if="${weather == null}" class="weather-info">
+        <p>No weather data available</p>
+    </div>
+</div>
+</body>
+</html>
